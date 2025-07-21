@@ -1,3 +1,4 @@
+
 package com.test.coding.stackqueuedeck;
 
 import java.io.BufferedReader;
@@ -5,8 +6,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.StringTokenizer;
 
 public class CT28278 {
@@ -17,46 +18,40 @@ public class CT28278 {
 
 		int n = Integer.parseInt(br.readLine());
 		
-		List<Integer> stack = new ArrayList<>();
-		StringBuilder sb = new StringBuilder();
+		Deque<Integer> deck = new ArrayDeque<>();
 		
-		for (int i = 0; i < n; i++) {
+		for (int i=0; i<n; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			int command = Integer.parseInt(st.nextToken());
-
-			switch (command) {
+			
+			int a = Integer.parseInt(st.nextToken());
+			
+			switch (a) {
 				case 1:
-					int num = Integer.parseInt(st.nextToken());
-					stack.add(num); // push
+					deck.push(Integer.parseInt(st.nextToken()));
 					break;
-
 				case 2:
-					if (stack.isEmpty()) {
-						sb.append("-1\n");
-					} else {
-						sb.append(stack.remove(stack.size() - 1)).append("\n"); // pop
-					}
+					deck.add(Integer.parseInt(st.nextToken()));
 					break;
-
 				case 3:
-					sb.append(stack.size()).append("\n"); // size
+					bw.write((deck.isEmpty() ? -1 : deck.poll()) + "\n");
 					break;
-
 				case 4:
-					sb.append(stack.isEmpty() ? 1 : 0).append("\n"); // empty
+					bw.write((deck.isEmpty() ? -1 : deck.pop()) + "\n");
 					break;
-
 				case 5:
-					if (stack.isEmpty()) {
-						sb.append("-1\n");
-					} else {
-						sb.append(stack.get(stack.size() - 1)).append("\n"); // top
-					}
+					bw.write(deck.size() + "\n");
+					break;
+				case 6:
+					bw.write((deck.isEmpty() ? 1 : 0) + "\n");
+					break;
+				case 7:
+					bw.write((deck.isEmpty() ? -1 : deck.peekFirst()) + "\n");
+					break;
+				case 8:
+					bw.write((deck.isEmpty() ? -1 : deck.peekLast()) + "\n");
 					break;
 			}
 		}
-		
-		bw.write(sb.toString());
 		br.close();
 		bw.flush();
 		bw.close();
