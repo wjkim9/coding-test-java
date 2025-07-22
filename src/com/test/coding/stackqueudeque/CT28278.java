@@ -1,5 +1,5 @@
 
-package com.test.coding.stackqueuedeck;
+package com.test.coding.stackqueudeque;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -33,10 +33,10 @@ public class CT28278 {
 					deck.add(Integer.parseInt(st.nextToken()));
 					break;
 				case 3:
-					bw.write((deck.isEmpty() ? -1 : deck.poll()) + "\n");
+					bw.write((deck.isEmpty() ? -1 : deck.pollFirst()) + "\n");
 					break;
 				case 4:
-					bw.write((deck.isEmpty() ? -1 : deck.pop()) + "\n");
+					bw.write((deck.isEmpty() ? -1 : deck.pollLast()) + "\n");
 					break;
 				case 5:
 					bw.write(deck.size() + "\n");

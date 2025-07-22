@@ -1,4 +1,4 @@
-package com.test.coding.stackqueuedeck;
+package com.test.coding.stackqueudeque;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
