@@ -13,12 +13,22 @@ public class CT10872 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-		int n = Integer.parseInt(br.readLine());
+		long input = Long.parseLong(br.readLine());
 		
-		bw.write((int)Math.pow(2, n) + "");
+		long result = factorial(input);
+		
+		bw.write(result + "");
 		
 		br.close();
 		bw.flush();
 		bw.close();
+	}
+
+	private static long factorial(long input) {
+		if (input == 0) return 1; 
+		
+		long result = input * factorial(input-1);
+		
+		return result;
 	}
 }
