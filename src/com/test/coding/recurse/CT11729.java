@@ -1,36 +1,24 @@
 package com.test.coding.recurse;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 public class CT11729 {
 	
+    static StringBuilder sb = new StringBuilder(1 << 22); // 대략 수 MB 버퍼
+    static void hanoi(int n, int from, int to, int aux) {
+        if (n == 0) return;
+        hanoi(n - 1, from, aux, to);
+        sb.append(from).append(' ').append(to).append('\n');
+        hanoi(n - 1, aux, to, from);
+    }
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
         int n = Integer.parseInt(br.readLine());
-        int cnt = 0;
-        
-        Deque<Integer> pole1 = new ArrayDeque<>();
-        Deque<Integer> pole2 = new ArrayDeque<>();
-        Deque<Integer> pole3 = new ArrayDeque<>();
-        
-        for (int i=n; i>0; i--) {
-        	pole1.push(i);
-        }
-        
-        
-        
-        
-        
-        bw.flush();
-        br.close();
-        bw.close();
+        long moves = (1L << n) - 1;        // 2^n - 1
+        hanoi(n, 1, 3, 2);
+        StringBuilder out = new StringBuilder(sb.length() + 24);
+        out.append(moves).append('\n').append(sb);
+        System.out.print(out.toString());
     }
-
 }
